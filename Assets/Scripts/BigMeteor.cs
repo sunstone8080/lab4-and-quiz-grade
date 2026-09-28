@@ -14,7 +14,5 @@ public class BigMeteor : EnemyBase
         transform.Translate(Vector3.down * Time.deltaTime * fallSpeed);
     }
 
-    // Matches original behaviour: hitting the player destroys the player,
-    // but the BigMeteor itself keeps going.
     protected override bool DestroySelfOnPlayerHit => false;
 }

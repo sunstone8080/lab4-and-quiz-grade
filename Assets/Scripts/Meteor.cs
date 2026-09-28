@@ -7,11 +7,15 @@ public class Meteor : EnemyBase
     protected override void Move()
     {
         transform.Translate(Vector3.down * Time.deltaTime * fallSpeed);
+
+
     }
 
     protected override void OnDestroyedByDamage()
     {
-        // Only small meteors count toward spawning the next BigMeteor.
+        //Only meteors count toward spawning the next BigMeteor.
         GameEvents.MeteorDestroyed();
+
+
     }
 }

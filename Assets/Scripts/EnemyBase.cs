@@ -1,14 +1,6 @@
 using UnityEngine;
 
-/// <summary>
-/// Shared enemy behaviour: takes damage, despawns off-screen, destroys the
-/// player on contact, and reports its own death through GameEvents.
-///
-/// Open/Closed: new enemy types (see OrbitingEnemy) are added by subclassing
-/// and overriding Move()/hooks, never by editing this file or Meteor/BigMeteor.
-/// Liskov Substitution: Meteor, BigMeteor and OrbitingEnemy are all fully
-/// interchangeable wherever an EnemyBase (or IDamageable) is expected.
-/// </summary>
+
 [RequireComponent(typeof(Collider2D))]
 public abstract class EnemyBase : MonoBehaviour, IDamageable
 {
@@ -22,16 +14,16 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
         if (transform.position.y < despawnY)
         {
             Destroy(gameObject);
+
+
         }
     }
 
-    /// <summary>Subclasses define their own movement pattern.</summary>
+    //Subclasses define their own movement pattern.
     protected abstract void Move();
-
-    /// <summary>Hook for subclass-specific side effects when killed by damage (e.g. Meteor counting toward BigMeteor spawn).</summary>
+    //Hook for subclass-specific side effects when killed by damage
     protected virtual void OnDestroyedByDamage() { }
-
-    /// <summary>BigMeteor overrides this to false: it survives hitting the player.</summary>
+    //Toggle for big and small meteors 
     protected virtual bool DestroySelfOnPlayerHit => true;
 
     public virtual void TakeDamage(int amount)
